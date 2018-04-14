@@ -1,4 +1,4 @@
 {
-  "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
-  "git.ignoreLimitWarning": true
+    "python.pythonPath": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+    "terminal.integrated.shellArgs.windows": ["/K", "venv\\Scripts\\activate"],
 }
