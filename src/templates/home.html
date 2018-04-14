@@ -1,50 +1,28 @@
-{%load static%}
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Boards</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-
-<body>
-    <div class="container">
-        <nav>
-            <ol class="breadcrumb my-4">
-                <li class="breadcrumb-item active">Boards</li>
-            </ol>
-        </nav>
-
-        <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Board</th>
-                    <th>Posts</th>
-                    <th>Topics</th>
-                    <th>Last Post</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for board in boards %}
-                <tr>
-                    <td>
-                        <a href="{% url 'board_topics' board.pk %}">{{board.name}}</a>
-                        <span class="text-muted d-block">{{board.description}}</span>
-                    </td>
-                    <td class="align-middle">0</td>
-                    <td class="align-middle">0</td>
-                    <td></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+{% extends 'base.html' %} {% block breadcrumb %}
+<li class="breadcrumb-item active">Boards</li>
+{% endblock breadcrumb %} {% block content %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Board</th>
+            <th>Posts</th>
+            <th>Topics</th>
+            <th>Last Post</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for board in boards %}
+        <tr>
+            <td>
+                <a href="{% url 'board_topics' board.pk %}">{{board.name}}</a>
+                <span class="text-muted d-block">{{board.description}}</span>
+            </td>
+            <td class="align-middle">0</td>
+            <td class="align-middle">0</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}
