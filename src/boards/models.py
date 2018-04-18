@@ -14,7 +14,7 @@ class Topic(models.Model):
 	subject 		= models.CharField(max_length=255)
 	last_updated 	= models.DateTimeField(auto_now_add=True)
 	board 			= models.ForeignKey(Board, related_name='topics')
-	user 			= models.ForeignKey(User, related_name='topics')
+	starter 			= models.ForeignKey(User, related_name='topics')
 
 class Post(models.Model):
 	message 		= models.TextField(max_length=4000)
