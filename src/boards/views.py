@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import UpdateView, ListView
@@ -24,7 +25,20 @@ def board_topics(request, pk):
 """
 def board_topics(request, pk):
 	board = get_object_or_404(Board, pk=pk)
-	topics = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
+	queryset = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(queryset, 20)
+
+	try:
+		topics = paginator.page(page)
+	except PageNotAnInteger:
+		# fallback to the first page
+		topics = paginator.page(1)
+	except EmptyPage:
+		# probably the user tried to add a page number
+		# in the url, so we fallback to the last page
+		topics = paginator.page(paginator.num_pages)
 	return render(request, 'topics.html', {'board': board, 'topics': topics})
 
 @login_required
