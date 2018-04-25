@@ -6,6 +6,11 @@
 {% block title %}
     Post a reply
 {% endblock title %}
+
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+{% endblock stylesheet %}
     
 
 {% block breadcrumb %}
@@ -35,11 +40,20 @@
                         <small class="text-muted">{{post.created_at}}</small>
                     </div>
                 </div>
-                {{post.message}}
+                {{post.get_message_as_markdown}}
             </div>
         </div>
     {% endfor %}
         
 {% endblock content %}
+
+
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock javascript %}
+    
     
     
