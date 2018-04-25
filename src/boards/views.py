@@ -15,32 +15,6 @@ class BoardListView(ListView):
 	context_object_name = 'boards'	
 	template_name = 'home.html'
 
-"""
-def board_topics(request, pk):
-	try:
-		board = Board.objects.get(pk=pk)
-	except Board.DoesNotExist:
-		raise Http404
-	return render(request, 'topics.html', {'board': board})
-"""
-# def board_topics(request, pk):
-# 	board = get_object_or_404(Board, pk=pk)
-# 	queryset = board.topics.order_by('-last_updated').annotate(replies=Count('posts') - 1)
-# 	page = request.GET.get('page', 1)
-
-# 	paginator = Paginator(queryset, 20)
-
-# 	try:
-# 		topics = paginator.page(page)
-# 	except PageNotAnInteger:
-# 		# fallback to the first page
-# 		topics = paginator.page(1)
-# 	except EmptyPage:
-# 		# probably the user tried to add a page number
-# 		# in the url, so we fallback to the last page
-# 		topics = paginator.page(paginator.num_pages)
-# 	return render(request, 'topics.html', {'board': board, 'topics': topics})
-
 class TopicListView(ListView):
 	model = Topic
 	context_object_name = 'topics'
