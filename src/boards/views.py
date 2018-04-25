@@ -3,19 +3,24 @@ from django.contrib.auth.models import User
 from django.db.models import Count
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, ListView
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from .models import Board, Topic, Post
 from .forms import NewTopicForm, PostForm
 
-# Create your views here.
-def home(request):
-	boards = Board.objects.all()
-	ctx = {
-		'boards': boards
-	}
-	return render(request, 'home.html', ctx)
+# # Create your views here.
+# def home(request):
+# 	boards = Board.objects.all()
+# 	ctx = {
+# 		'boards': boards
+# 	}
+# 	return render(request, 'home.html', ctx)
+
+class BoardListView(ListView):
+	model = Board
+	context_object_name = 'boards'	
+	template_name = 'home.html'
 
 """
 def board_topics(request, pk):
