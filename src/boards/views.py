@@ -9,14 +9,6 @@ from django.utils.decorators import method_decorator
 from .models import Board, Topic, Post
 from .forms import NewTopicForm, PostForm
 
-# # Create your views here.
-# def home(request):
-# 	boards = Board.objects.all()
-# 	ctx = {
-# 		'boards': boards
-# 	}
-# 	return render(request, 'home.html', ctx)
-
 class BoardListView(ListView):
 	model = Board
 	context_object_name = 'boards'	
@@ -52,7 +44,6 @@ def new_topic(request, pk):
 				created_by = request.user
 			)
 			return redirect('topic_posts', pk=pk, topic_pk=topic.pk)
-			#return redirect('board_topics', pk=board.pk)
 	else:
 		form = NewTopicForm()
 
