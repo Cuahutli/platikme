@@ -1,13 +1,13 @@
 {% extends 'base.html' %} {% block breadcrumb %}
-<li class="breadcrumb-item active">Boards</li>
+<li class="breadcrumb-item active">Tableros</li>
 {% endblock breadcrumb %} {% block content %}
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th>Board</th>
+            <th>Tablero</th>
             <th>Posts</th>
-            <th>Topics</th>
-            <th>Last Post</th>
+            <th>Temas</th>
+            <th>Último Post</th>
         </tr>
     </thead>
     <tbody>
@@ -24,12 +24,12 @@
                     {% if post %}
                         <small>
                             <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
-                                By {{ post.created_by.username }} at {{ post.created_at }}
+                                Creado por: {{ post.created_by.username }} el {{ post.created_at }}
                             </a>     
                         </small>
                     {% else %}
                         <small class="text-muted">
-                            <em>No post yet.</em>
+                            <em>Aún no hay posts</em>
                         </small>
                     {% endif %}
                 {% endwith %}

@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    Log in to Platik-me
+    Logueate en Platik-me
 {% endblock title %}
     
 
@@ -11,21 +11,21 @@
         <div class="col-lg-4 col-md-6 col-sm-8">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-tittle">Log in</h3>
+                    <h3 class="card-tittle">Logueate</h3>
                     <form action="" method="post" novalidate>
                         {% csrf_token %}
                         <input type="hidden" name="next" value="{{next}}">
                         {% include 'includes/form.html' %}
-                        <button type="submit" class='btn btn-primary btn-block'>Log in</button>
+                        <button type="submit" class='btn btn-primary btn-block'>Entrar</button>
                     </form>
                 </div>
                 <div class="card-footer text-muted text-center">
-                    New to Platik-me? <a href="{% url 'signup' %}">Sign up</a>
+                    Nuevo en Platik-me? <a href="{% url 'signup' %}">Registrate</a>
                 </div>
             </div>
             <div class="text-center py-2">
                 <small>
-                    <a href="{% url 'password_reset' %}" class="text-muted">Forgot your password?</a>
+                    <a href="{% url 'password_reset' %}" class="text-muted">Olvidaste tu contraseña?</a>
                 </small>
             </div>
         </div>
