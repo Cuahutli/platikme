@@ -66,8 +66,9 @@ class Post(models.Model):
 	
 	def get_message_as_markdown(self):
 		
-		print(markdown(self.message))
-		new_text = mark_safe(self.message)
+		# print(markdown(self.message))
+		# new_text = mark_safe(self.message)
 		
-		#print(new_text)
-		return new_text
+		# #print(new_text)
+		# return new_text
+		return mark_safe(markdown(self.message, safe_mode='escape'))
