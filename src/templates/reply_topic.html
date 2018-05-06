@@ -10,8 +10,9 @@
 
 {% block stylesheet %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/default.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles/atelier-forest-light.css' %}">
 {% endblock stylesheet %}
-    
 
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'home' %}">Tableros</a></li>
@@ -40,7 +41,9 @@
                         <small class="text-muted">{{post.created_at}}</small>
                     </div>
                 </div>
+                <div class="content-markdown">
                 {{post.get_message_as_markdown}}
+                </div>
             </div>
         </div>
     {% endfor %}
@@ -50,10 +53,22 @@
 
 {% block javascript %}
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.19/marked.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
     <script>
         var simplemde = new SimpleMDE();
+        $(document).ready(function() {           
+            $('.content-markdown').each(function(){
+                var content = $(this).text().trim()
+                console.log(content)
+                var markedContent = marked(content)
+                //console.log(markedContent)
+                $(this).html(markedContent)
+
+            })
+             $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
     </script>
 {% endblock javascript %}
-    
-    
-    

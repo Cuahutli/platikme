@@ -65,4 +65,9 @@ class Post(models.Model):
 		return truncated_message.chars(30)
 	
 	def get_message_as_markdown(self):
-		return mark_safe(markdown(self.message, safe_mode='escape'))
+		
+		print(markdown(self.message))
+		new_text = mark_safe(self.message)
+		
+		#print(new_text)
+		return new_text
